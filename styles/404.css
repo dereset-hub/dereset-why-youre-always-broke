@@ -1,51 +1,77 @@
+/* ============================================================
+   Branded 404 page (PR-001 · Finance). Same brand layer and vertical theme as the
+   sales page (Decision 018). Absolute /styles and / paths are used so the
+   page also renders correctly for nested invalid paths (e.g. /a/b/c).
+   ============================================================ */
 :root {
   --gold: #f0c234;
+  --gold-deep: #c8971f;
   --cream: #f5f0e8;
   --charcoal: #1a1a1a;
+  --tone: #16302a;
+  --tone-deep: #112620;
+  --tone-text: #d6e4da;
+  --tone-bright: #eef3ef;
+  --tone-soft: #b7cdbf;
+  --tone-muted: #9fb8a8;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Poppins', 'Segoe UI', Arial, sans-serif;
 }
-
-* { box-sizing: border-box; }
-
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 body {
-  margin: 0;
-  background: var(--cream);
-  color: var(--charcoal);
-  font-family: Georgia, 'Times New Roman', serif;
-  line-height: 1.7;
-  display: flex;
   min-height: 100vh;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  line-height: 1.7;
+  color: var(--tone-text);
+  background:
+    radial-gradient(90% 60% at 50% 0%, rgba(240,194,52,.12) 0%, rgba(240,194,52,0) 60%),
+    linear-gradient(180deg, var(--tone) 0%, var(--tone-deep) 100%);
+  -webkit-font-smoothing: antialiased;
 }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.container { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
 
-.wrap {
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 24px;
-  text-align: center;
-}
+.brand-bar { border-bottom: 1px solid rgba(240,194,52,.25); }
+.brand-bar-inner { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-top: 14px; padding-bottom: 14px; }
+.brand-mark { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: var(--cream); text-decoration: none; }
+.brand-mark::first-letter { color: var(--gold); }
+.brand-tag { font-size: .78rem; color: var(--tone-muted); font-style: italic; }
 
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: #6b5e2a;
-  margin: 0 0 16px;
-}
-
-h1 {
-  font-size: 1.8rem;
-  margin: 0 0 12px;
-}
-
-.btn {
+.nf { flex: 1; display: flex; align-items: center; padding: 64px 0; }
+.nf-inner { text-align: center; max-width: 620px; }
+.nf-code { font-family: var(--font-display); font-weight: 700; font-size: 5.5rem; line-height: 1; color: var(--gold); opacity: .9; margin-bottom: 18px; letter-spacing: -.02em; }
+.eyebrow { font-size: .74rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: 2.4rem; line-height: 1.15; color: #fff; margin-bottom: 14px; }
+.nf-text { font-size: 1.05rem; color: var(--tone-bright); margin-bottom: 8px; }
+.cta-btn {
   display: inline-block;
-  margin-top: 20px;
-  background: linear-gradient(180deg, var(--gold) 0%, #c8971f 100%);
+  margin: 26px 0 16px;
+  padding: 16px 34px;
+  min-height: 48px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--gold) 0%, #e2ad22 100%);
   color: var(--charcoal);
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: .02em;
   text-decoration: none;
-  padding: 14px 24px;
-  border-radius: 8px;
+  box-shadow: 0 10px 24px -10px rgba(200,151,31,.8), inset 0 -2px 0 rgba(0,0,0,.08);
+  transition: transform .15s ease;
 }
+.cta-btn:hover { transform: translateY(-1px); }
+.nf-alt { font-size: .88rem; color: var(--tone-soft); }
+.nf-alt a { text-decoration: underline; text-underline-offset: 3px; }
+
+.site-footer { background: var(--charcoal); color: #a39e92; text-align: center; font-size: .78rem; padding: 22px 0; }
+.site-footer p { margin-top: 6px; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px; }
+.site-footer a { color: var(--cream); }
+
+@media (min-width: 768px) {
+  .nf-code { font-size: 7rem; }
+  h1 { font-size: 3rem; }
+}
+@media (prefers-reduced-motion: reduce) { .cta-btn { transition: none; } .cta-btn:hover { transform: none; } }
